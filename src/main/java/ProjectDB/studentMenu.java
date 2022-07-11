@@ -12,7 +12,6 @@ import java.util.List;
 import static ProjectDB.Utilities.Methods.*;
 
 public class studentMenu {
-//    private final TestService ts = new TestService();
 
     public studentMenu(User user, UserService us, TestService ts) {
         boolean repeat = true;
