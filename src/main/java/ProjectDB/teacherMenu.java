@@ -12,11 +12,10 @@ import java.util.Set;
 
 import static ProjectDB.Utilities.Methods.*;
 
-@SuppressWarnings("ALL")
 public class teacherMenu {
-//    private final TestService ts = new TestService();
+    private final TestService ts = new TestService();
 
-    public teacherMenu(User user, UserService us, TestService ts) {
+    public teacherMenu(User user, UserService us) {
 
         boolean repeat = true;
         do {

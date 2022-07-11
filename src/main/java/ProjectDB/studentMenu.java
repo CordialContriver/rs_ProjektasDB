@@ -12,8 +12,9 @@ import java.util.List;
 import static ProjectDB.Utilities.Methods.*;
 
 public class studentMenu {
+private final TestService ts = new TestService();
 
-    public studentMenu(User user, UserService us, TestService ts) {
+    public studentMenu(User user, UserService us) {
         boolean repeat = true;
         do {
             System.out.println("""

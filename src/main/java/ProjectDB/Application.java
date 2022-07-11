@@ -12,7 +12,6 @@ import static ProjectDB.Utilities.Methods.*;
 
 public class Application {
     private final UserService us = new UserService();
-            private final TestService ts = new TestService();
 
 
     public void mainMenu() {
@@ -82,11 +81,9 @@ public class Application {
         User user = us.getUserByUsername(nameLogin);
         if (user != null && user.getPasswordHash().equals(DigestUtils.sha1Hex(passLogin+user.getSalt()))) {
             if (user.getUserType() == UserType.STUDENT) {
-                new studentMenu(user, us, ts);
-//                new studentMenu(user, us);
+                new studentMenu(user, us);
             } else if (user.getUserType() == UserType.TEACHER) {
-                new teacherMenu(user, us, ts);
-//                new teacherMenu(user, us);
+                new teacherMenu(user, us);
             }
         } else {
             System.out.println("Duomenys neteisingi");
