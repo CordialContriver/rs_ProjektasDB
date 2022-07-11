@@ -1,0 +1,47 @@
+INSERT INTO public.users
+("name", passwordhash, salt, surname, usertype, username)
+VALUES('tt', '3efd64f192e11f2b68b111082b582ddda2e18b24', '428808400', 'tt', 1, 'tt');
+INSERT INTO public.users
+("name", passwordhash, salt, surname, usertype, username)
+VALUES('ss', '573257706d33495f965bd290337963450078b97a', '024874600', 'ss', 0, 'ss');
+INSERT INTO public.users
+("name", passwordhash, salt, surname, usertype, username)
+VALUES('rr', 'c60f3148b044ec751b9ecc8c7f888cc1d589fa71', '211697800', 'rs', 1, 'rs');
+
+INSERT INTO public.tests
+(testname, user_id)
+VALUES('T01', 2);
+INSERT INTO public.tests
+(testname, user_id)
+VALUES('R2', 1);
+INSERT INTO public.tests
+(testname, user_id)
+VALUES('R3', 1);
+INSERT INTO public.tests
+(testname, user_id)
+VALUES('R1', 1);
+
+INSERT INTO public.questions
+(correctchoice, questiontext, vara, varb, varc, test_id)
+VALUES('B', 't', 'a', 't', NULL, 3);
+INSERT INTO public.questions
+(correctchoice, questiontext, vara, varb, varc, test_id)
+VALUES('A', 'pp', 'pp', 'a', 'a', 2);
+INSERT INTO public.questions
+(correctchoice, questiontext, vara, varb, varc, test_id)
+VALUES('C', '3', '0', '1', '3', 4);
+INSERT INTO public.questions
+(correctchoice, questiontext, vara, varb, varc, test_id)
+VALUES('A', 'r', 'r', 'a', 'a', 1);
+INSERT INTO public.questions
+(correctchoice, questiontext, vara, varb, varc, test_id)
+VALUES('B', 's', 'b', 's', 'b', 1);
+
+
+INSERT INTO public.testattempts
+(dateoftest, user_id, test_id)
+VALUES('2022-07-11', 3, 3);
+
+INSERT INTO public.answers
+(answerchoice, question_id, testattempt_id)
+VALUES('C', 4, 1);

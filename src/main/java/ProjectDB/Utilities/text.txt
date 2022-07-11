@@ -1,0 +1,161 @@
+   @Data
+   @AllArgsConstructor
+   @NoArgsConstructor
+   @Entity
+   @Table(name = "")
+
+   public class  {
+       @Id
+       @GeneratedValue(strategy = GenerationType.IDENTITY)
+       private Long id;
+
+   }
+
+    @OneToMany(mappedBy = "employer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Invoice> invoices;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "employer_id")
+    private Employer employer;
+
+    ----
+    /*
+        public static void main(String[] args) {
+            Scanner sc = new Scanner();
+            Main m = new Main();
+
+        }
+
+        private void menu(Connection connection, Scanner sc) {
+
+            pickTest(connection, sc);
+            administration(connection, sc);
+        }
+
+        private void pickTest(Connection connection, Scanner sc) throws SQLException {
+            ResultSet rs = connection.createStatement().e
+
+            executeQuery("select * from TESTAS");
+            List<String> result = new ArrayList<>();
+            while (rs.next()) {
+                result.add(rs.getString(2));
+            }
+            int test = selectIntFromList(result);
+
+            testMenu(connection, sc, testID);
+        }
+
+        private void testMenu(Connection connection, Scanner sc, String test) throws SQLException {
+            boolean repeat = true;
+            do {
+                System.out.println("Testas: "+test);
+                System.out.println("""
+                        [1] Laikyti testą
+                        [2] Redaguoti testą
+                        [3] Atgal
+                        """);
+                switch (sc.nextLine()) {
+                    case "1" -> {
+                        takeTest(connection, sc, testID);
+                        repeat = false;
+                    }
+                    case "2" -> {
+                        editTest(connection, sc, testID);
+                        repeat = false;
+                    }
+                    case "3" -> repeat = false;
+                    default -> System.out.println("Tokio pasirinkimo nėra");
+                }
+            } while (repeat);
+        }
+
+        private void takeTest(Connection connection, Scanner sc, int testID) throws SQLException {
+            System.out.println("Vardas?");
+            String name = stringNotEmpty(sc);
+
+            connection.setAutoCommit(false);
+            //int nr = 0;
+            // Reikia išmesti klausimo nr iš duombazes
+            try {
+                int rightAnswers = 0;
+                int totalQuestions = 0;
+
+                PreparedStatement ps;
+                ps = connection.prepareStatement("""
+                        insert into LAIKYMAS (?,?,?)
+                        """);
+                ps.setInt(1, testID);
+                ps.setString(2, name);
+                ps.setDate(3, Date.valueOf(LocalDate.now()));
+                ps.executeUpdate();
+
+                ps = connection.prepareStatement("""
+                        select ID from LAIKYMAS where TestID = ? and Studentas=? and Data=?
+                        """);
+                ps.setInt(1, testID);
+                ps.setString(2, name);
+                ps.setDate(3, Date.valueOf(LocalDate.now()));
+                int laikymasID = ps.executeQuery().getInt(1);
+
+                ps = connection.prepareStatement("select * from KLAUSIMAS where Test_ID=\'"+testID+"\'");
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    System.out.println(rs.getInt(3)+". "+rs.getString("4")+
+                            "\n [A] "+rs.getString(5)+
+                            "\n [B] "+rs.getString(6)+
+                            "\n [B] "+rs.getString(7));
+                    String answer = stringABC(sc);
+
+                    totalQuestions++;
+                    if (answer.equals(rs.getString(8))) {
+                        rightAnswers++;
+                    }
+
+                    ps = connection.prepareStatement("insert into ATSAKYMAS (?,?,?)");
+                    ps.setInt(1, laikymasID);
+                    ps.setInt(2, testID);
+                    ps.setString(3, answer);
+                    ps.executeUpdate();
+                }
+
+                connection.commit();
+
+                System.out.printf("\nTeisingi atsakymai: %d/%d", rightAnswers, totalQuestions);
+
+            } catch (Exception e) {
+                System.out.println("Sistemos klaida. Testas nebuvo išsaugotas.");
+                connection.rollback();
+            } finally {
+                connection.setAutoCommit(true);
+            }
+        }
+
+        private String stringABC(Scanner sc) {
+            System.out.println("Pasirinkite atsakymą");
+            while (true) {
+                switch (sc.nextLine().trim().toUpperCase()) {
+                    case "A" -> {
+                        return "A";
+                    }
+                    case "B" -> {
+                        return "B";
+                    }
+                    case "C" -> {
+                        return "C";
+                    }
+                }
+            }
+        }
+
+        private String stringNotEmpty(Scanner sc) {
+            while(true){
+                String input = sc.nextLine().trim();
+                if(input.equals("")){
+                    System.out.println("Laukas negali būti tuščias");
+                } else {
+                    return input;
+                }
+            }
+
+        }
+     */

@@ -1,0 +1,61 @@
+CREATE TABLE "public.TESTAS" (
+	"ID" serial NOT NULL,
+	"Pavadinimas" varchar(255) NOT NULL UNIQUE,
+	CONSTRAINT "TESTAS_pk" PRIMARY KEY ("ID")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "public.KLAUSIMAS" (
+	"ID" serial NOT NULL,
+	"Test_ID" serial NOT NULL,
+	"Nr" integer NOT NULL,
+	"Tekstas" varchar(255) NOT NULL,
+	"Variantas A" varchar(255),
+	"Variantas B" varchar(255),
+	"Variantas C" varchar(255),
+	"Teisingas" varchar(255),
+	CONSTRAINT "KLAUSIMAS_pk" PRIMARY KEY ("ID")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "public.LAIKYMAS" (
+	"ID" serial NOT NULL,
+	"TestID" integer NOT NULL,
+	"Studentas" varchar(255),
+	"Data" DATE(255) NOT NULL,
+	CONSTRAINT "LAIKYMAS_pk" PRIMARY KEY ("ID")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "public.ATSAKYMAS" (
+	"Laikymo_ID" integer NOT NULL,
+	"Klausimo_ID" integer NOT NULL,
+	"Atsakymas" varchar(255) NOT NULL,
+	CONSTRAINT "ATSAKYMAS_pk" PRIMARY KEY ("Laikymo_ID","Klausimo_ID")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+
+ALTER TABLE "KLAUSIMAS" ADD CONSTRAINT "KLAUSIMAS_fk0" FOREIGN KEY ("Test_ID") REFERENCES "TESTAS"("ID");
+
+ALTER TABLE "LAIKYMAS" ADD CONSTRAINT "LAIKYMAS_fk0" FOREIGN KEY ("TestID") REFERENCES "TESTAS"("ID");
+
+ALTER TABLE "ATSAKYMAS" ADD CONSTRAINT "ATSAKYMAS_fk0" FOREIGN KEY ("Laikymo_ID") REFERENCES "LAIKYMAS"("ID");
+ALTER TABLE "ATSAKYMAS" ADD CONSTRAINT "ATSAKYMAS_fk1" FOREIGN KEY ("Klausimo_ID") REFERENCES "KLAUSIMAS"("ID");
+
+
+
+
+
