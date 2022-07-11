@@ -6,9 +6,9 @@ import jakarta.persistence.Table;
 import java.util.Set;
 
 
-//@Data
-@Getter
-@Setter
+@Data
+//@Getter
+//@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity

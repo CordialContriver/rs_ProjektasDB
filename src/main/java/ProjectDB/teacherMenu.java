@@ -5,6 +5,11 @@ import ProjectDB.Services.TestService;
 import ProjectDB.Services.UserService;
 import ProjectDB.Tables.*;
 
+import java.sql.ResultSet;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import static ProjectDB.Utilities.Methods.*;
 
 @SuppressWarnings("ALL")
@@ -39,8 +44,11 @@ public class teacherMenu {
         ts.seeTestResults(test);
     }
 
+
     private Test pickTestTeacher(User user) {
+//        for (Test test : ts.getTestListByTeacher(user){
         for (Test test : user.getTests()) {
+
             System.out.printf("[%d] %s\n", test.getId(), test.getTestName());
             System.out.println("Kartų laikytas: "+test.getAttempts().size());
         }
@@ -51,7 +59,7 @@ public class teacherMenu {
 
     private void createTest(User user, TestService ts) {
         String testName = stringNotEmpty("Testo pavadinimas");
-        Test test = new Test(user, testName);
+        Test test = new Test(user, testName, new HashSet<Question>());
         ts.createNewTest(test);
         QuestionService qs = new QuestionService();
         while (true) {
@@ -59,8 +67,11 @@ public class teacherMenu {
             if (newQuestion == null) {
                 break;
             }
-            qs.addNewQuestion(newQuestion);
+//            qs.addNewQuestion(newQuestion);
+
+            test.getQuestions().add(newQuestion);
         }
+        ts.updateTest(test);
     }
 
     private Question createQuestion(Test test) {
